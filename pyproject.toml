@@ -1,0 +1,32 @@
+[project]
+name = "posso-confiar"
+version = "1.0.0"
+description = "Código complementar do livro Posso confiar nessa previsão?"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Alexandre S. Oliveira" }]
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov"]
+full = ["statsforecast", "mlforecast", "lightgbm", "hierarchicalforecast"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["posso_confiar*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# "test_*" e não "test*": em português, funções como
+# `teste_permutacao_pareado` casariam com o padrão default do pytest
+# e seriam coletadas como teste por engano.
+python_functions = "test_*"
